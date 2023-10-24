@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "ms-azuretools.vscode-docker",
+        "github.vscode-github-actions",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-maven",
+        "vscjava.vscode-java-dependency",
+        "vscjava.vscode-java-debug"
+    ]
+}

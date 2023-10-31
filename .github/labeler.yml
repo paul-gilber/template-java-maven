@@ -1,0 +1,70 @@
+---
+# actions/labeler configuration: https://github.com/marketplace/actions/labeler
+
+# Default GitHub Labels: https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels#about-default-labels
+
+# Add `documentation` label
+documentation:
+  # to any changes of markdown files on any folder or subfolders
+  - '**/*.md'
+  # to any changes within docs folder
+  - docs/**
+
+# Add `java` label
+java:
+  # to any changes of application code
+  - src/**
+
+# Add `dependencies` label
+dependencies:
+  - pom.xml    # maven
+  - '*.gradle'    # gradle
+
+# Add `maven` label
+maven:
+  - pom.xml
+
+# Add `gradle` label
+gradle:
+  - '*.gradle'
+
+# Add `container` label
+container:
+  # to any changes of any Containerfile within this repository
+  - '**/Containerfile*'
+  # to any changes of any Dockerfile within this repository
+  - '**/Dockerfile*'
+  # to any chages to container-structure-test.yaml file
+  - container-structure-test.yaml
+  # to any chages to compose.yaml or compose.yml file
+  - compose.yaml
+  - compose.yml
+
+# Add `devcontainer` label
+devcontainer:
+  # to any changes within .devcontainer folder
+  - .devcontainer/**
+
+# Add `github-workflow` label
+github-workflow:
+  # to any changes within .github folder
+  - .github/**
+
+# Add `vscode-settings` label
+vscode-settings:
+  # to any changes within .vscode folder
+  - .vscode/**
+
+# Add `git-config` label
+git-config:
+  # to any changes within .git folder
+  - .git/**
+  # to any chages to .gitattributes file
+  - .gitattributes
+  # to any chages to .gitignore file
+  - .gitignore
+
+# Add `lint` label
+lint:
+  # to any changes to files, folders and subfolders with `lint` keyword
+  - '**lint**'

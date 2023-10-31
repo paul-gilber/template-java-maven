@@ -1,0 +1,30 @@
+---
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  # Docker: Dependabot can add metadata from Docker images to pull requests for version updates.
+  # The metadata includes release notes, changelogs and the commit history.
+  # Repository administrators can use the metadata to quickly evaluate the stability risk of the dependency update.
+  # In order for Dependabot to fetch Docker metadata,
+  # maintainers of Docker images must add the `org.opencontainers.image.source` label to their Dockerfile,
+  # and include the URL of the source repository.
+  # Additionally, maintainers must tag the repository with the same tags as the published Docker images
+  - package-ecosystem: docker    # See documentation for possible values https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem
+    directory: "/"    # Location of package manifests
+    schedule:
+      interval: weekly
+  # Maven: Dependabot doesn't run Maven but supports updates to pom.xml files.
+  - package-ecosystem: maven    # See documentation for possible values https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem
+    directory: "/"    # Location of package manifests
+    schedule:
+      interval: weekly
+  # GitHub Actions: Dependabot only supports updates to GitHub Actions using the GitHub repository syntax,
+  # such as actions/checkout@v4. Docker Hub and GitHub Packages Container registry URLs are currently not supported.
+  - package-ecosystem: github-actions    # See documentation for possible values https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem
+    directory: "/"    # Location of package manifests
+    schedule:
+      interval: weekly

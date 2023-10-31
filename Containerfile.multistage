@@ -1,0 +1,19 @@
+# Build my-project using Multi-Stage Container Build: https://docs.docker.com/build/building/multi-stage/
+
+ARG BUILD_IMAGE="registry.access.redhat.com/ubi8/openjdk-17"
+ARG RUNTIME_IMAGE="registry.access.redhat.com/ubi8/openjdk-17-runtime"
+
+# Build
+FROM ${BUILD_IMAGE} as build
+ARG MAVEN_ARGS
+WORKDIR /build
+
+COPY src ./src
+COPY pom.xml ./pom.xml
+RUN mvn clean package -Dmaven.test.skip=true -Ddockerfile.skip
+
+# APP
+FROM ${RUNTIME_IMAGE}
+WORKDIR /app
+COPY --from=build /build/target/my-project*.jar my-project.jar
+CMD ["/usr/bin/java", "-jar", "/app/my-project.jar"]

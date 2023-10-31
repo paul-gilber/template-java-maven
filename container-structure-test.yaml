@@ -1,0 +1,56 @@
+---
+# Run command:
+# > container-structure-test test --image my-project --config container-structure-test.yaml
+schemaVersion: 2.0.0
+
+metadataTest:
+  envVars:
+    - key: JAVA_HOME
+      value: /usr/lib/jvm/jre
+    # Confirm Base Image Name
+    - key: JBOSS_IMAGE_NAME
+      value: ubi8/openjdk-17-runtime    # Confirm runtime image was used as base image instead of build image
+    # Confirm Java Version, must match with `project.properties["java.version"] in pom.xml`
+    - key: JAVA_VERSION
+      value: "17"
+    # Confirm Java Vendor
+    - key: JAVA_VENDOR
+      value: openjdk
+    # Confirm Image OCI compliance
+    - key: container
+      value: oci
+  labels:
+    # Confirm labels from Red Hat provided base image
+    - key: name
+      value: ubi8/openjdk-17-runtime    # Confirm runtime image was used as base image instead of build image
+    - key: vendor
+      value: Red Hat, Inc.
+    - key: version
+      value: "1.17"
+  exposedPorts: ["8080"]
+  volumes: []
+  entrypoint: []
+  cmd: ["/usr/bin/java", "-jar", "/app/my-project.jar"]
+  workdir: /app
+  user: 185
+
+commandTests:
+  - name: Confirm Java Version 17
+    command: java
+    args: ['-version']
+    expectedError: ['.* version "17.*']    # Version output is sent to stderr
+
+fileExistenceTests:
+  - name: Confirm absence of application source files
+    path: /home/jboss/src
+    shouldExist: false
+  - name: Confirm absence of application pom.xml
+    path: /home/jboss/pom.xml
+    shouldExist: false
+  - name: Confirm existence of application JAR
+    path: /app/my-project.jar
+    shouldExist: true
+    permissions: -rw-r--r--
+    # UID and GID values are from based image: registry.access.redhat.com/ubi8/openjdk-17-runtime
+    uid: 185
+    gid: 0

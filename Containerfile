@@ -1,8 +1,11 @@
-ARG BUILD_IMAGE="registry.access.redhat.com/ubi8/openjdk-17"
+# Build my-project using dockerfile-maven-plugin: https://github.com/spotify/dockerfile-maven
+
 ARG RUNTIME_IMAGE="registry.access.redhat.com/ubi8/openjdk-17-runtime"
-
-FROM ${BUILD_IMAGE} as build
-# Add commands for building application
-
 FROM ${RUNTIME_IMAGE}
-# Add commands for application runtime configuration
+WORKDIR /app
+
+# Add the service itself
+ARG JAR_FILE
+COPY --chown=185:0 target/${JAR_FILE} my-project.jar
+
+CMD ["/usr/bin/java", "-jar", "/app/my-project.jar"]

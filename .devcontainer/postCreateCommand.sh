@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# Specify a folder for hooks (only available for git version >= 2.9)
+git config core.hooksPath .githooks
+
 # Installation of MySQL (via Homebrew) feature fails.
 # Install MySQL after container creation.
 # Failed feature: ghcr.io/devcontainers-contrib/features/mysql-homebrew:1

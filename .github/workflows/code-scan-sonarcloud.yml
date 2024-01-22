@@ -62,14 +62,14 @@ jobs:
           java-version: '17'    # Java version must match `project.properties['java.version']` in pom.xml
 
       - name: Cache Maven dependencies
-        uses: actions/cache@v3    # https://github.com/marketplace/actions/cache#using-a-combination-of-restore-and-save-actions
+        uses: actions/cache@v4    # https://github.com/marketplace/actions/cache#using-a-combination-of-restore-and-save-actions
         with:
           path: |
             ~/.m2
           key: maven-${{ hashFiles('**/pom.xml') }}
 
       - name: Cache SonarCloud dependencies
-        uses: actions/cache@v3    # https://github.com/marketplace/actions/cache#using-a-combination-of-restore-and-save-actions
+        uses: actions/cache@v4    # https://github.com/marketplace/actions/cache#using-a-combination-of-restore-and-save-actions
         with:
           path: |
             ~/.sonar/cache

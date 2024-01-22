@@ -47,7 +47,7 @@ jobs:
       # Cache Maven dependencies
       - name: Install and Cache Maven dependencies
         id: cache
-        uses: actions/cache@v3    # https://github.com/marketplace/actions/cache#using-a-combination-of-restore-and-save-actions
+        uses: actions/cache@v4    # https://github.com/marketplace/actions/cache#using-a-combination-of-restore-and-save-actions
         with:
           path: ~/.m2
           key: maven-${{ hashFiles('**/pom.xml') }}

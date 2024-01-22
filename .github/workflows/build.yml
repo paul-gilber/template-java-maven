@@ -112,7 +112,7 @@ jobs:
       # Cache Maven dependencies
       - name: Install and Cache Maven dependencies
         id: cache
-        uses: actions/cache@v3    # https://github.com/marketplace/actions/cache#using-a-combination-of-restore-and-save-actions
+        uses: actions/cache@v4    # https://github.com/marketplace/actions/cache#using-a-combination-of-restore-and-save-actions
         with:
           path: |
             ~/.m2
@@ -244,7 +244,7 @@ jobs:
 
       - name: Cache Trivy
         id: cache
-        uses: actions/cache@v3    # https://github.com/marketplace/actions/cache#using-a-combination-of-restore-and-save-actions
+        uses: actions/cache@v4    # https://github.com/marketplace/actions/cache#using-a-combination-of-restore-and-save-actions
         with:
           path: ${{ env.TRIVY_CACHE_DIR }}
           key: trivy-${{ hashFiles('**/pom.xml', '**/Containerfile*') }}    # Trivy scan results are influenced by maven dependencies and Containerfile runtime image
